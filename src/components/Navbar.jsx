@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GiChefToque, GiForkKnifeSpoon } from "react-icons/gi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   FiHome,
   FiBook,
@@ -11,11 +11,90 @@ import {
   FiKey,
 } from "react-icons/fi";
 import { useCart } from "./cartContext";
+import Login from "./Login";
+import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const Navigate = useNavigate();
+  const location = useLocation();
   const { totalItems } = useCart();
   const [showLoginModal, setShowLoginModal] = useState(false);
+
+  //COMBONE UPDATING LOGIN MODAL AND AUTHE STATUS ON LOCATION CHANGE
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    Boolean(localStorage.getItem("loginData"))
+  );
+
+  useEffect(() => {
+    setShowLoginModal(location.pathname === "/login");
+    setIsAuthenticated(Boolean(localStorage.getItem("loginData")));
+  }, [location.pathname]);
+
+  const handleLoginSuccess = () => {
+    localStorage.setItem("loginData", JSON.stringify({ loggedIn: true }));
+    setIsAuthenticated(true);
+    Navigate("/");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("loginData");
+    setIsAuthenticated(false);
+  };
+
+  //EXTRA DESKTOP AUTH BUTTON
+  const renderDesktopAuthButton = () => {
+    return isAuthenticated ? (
+      <button
+        onClick={handleLogout}
+        className="px-3 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 bg-gradient-to-br from-amber-500 to-amber-700
+      text-[#2d1b0e] rounded-2xl font-bold hover:shadow-lg hover:shadow-amber-600/40 transition-all transform hover:scale-[1.02] border-2 
+      border-amber-600/20 flex items-center space-x-2 shadow-md shadow-amber-900/20 text-xs md:text-sm lg:text-sm"
+      >
+        <FiLogOut className="text-base md:text-lg lg:text-lg" />
+        <span className="text-shadow">Logout</span>
+      </button>
+    ) : (
+      <button
+        onClick={() => {
+          Navigate("/login");
+          setShowLoginModal(true);
+        }}
+        className="px-3 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 bg-gradient-to-br from-amber-500 to-amber-700
+      text-[#2d1b0e] rounded-2xl font-bold hover:shadow-lg hover:shadow-amber-600/40 transition-all transform hover:scale-[1.02] border-2 
+      border-amber-600/20 flex items-center space-x-2 shadow-md shadow-amber-900/20 text-xs md:text-sm lg:text-sm"
+      >
+        <FiKey className="text-base md:text-lg lg:text-lg" />
+        <span className="text-shadow">Login</span>
+      </button>
+    );
+  };
+
+  //EXTRACT MOBILE AUTH BTN
+  const renderMobileAuthButton = () => {
+    return isAuthenticated ? (
+      <button
+        onClick={handleLogout}
+        className="w-full px-4 py-3 bg-gradient-to-br from-amber-500 to-amber-700 tetx-[#2D1B0E] rounded-xl 
+    font-semibold flex items-center justify-center space-x-2 text-sm"
+      >
+        <FiLogOut />
+        <span>Logout</span>
+      </button>
+    ) : (
+      <button
+        onClick={() => {
+          navigate("/login");
+          setIsOpen(false);
+        }}
+        className="w-full px-4 py-3 bg-gradient-to-br from-amber-500 to-amber-700 tetx-[#2D1B0E] rounded-xl 
+    font-semibold flex items-center justify-center space-x-2 text-sm"
+      >
+        <FiKey />
+        <span>Login</span>
+      </button>
+    );
+  };
 
   const navLinks = [
     { name: "Home", to: "/", icon: <FiHome /> },
@@ -25,7 +104,10 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-[#2D1B0E] border-b-8 border-amber-900/30 shadow-amber-900/30 sticky top-0 z-50 shadow-[0_25px_50px_-12px] font-vibes group/nav overflow-x-hidden">
+    <nav
+      className="bg-[#2D1B0E] border-b-8 border-amber-900/30 shadow-amber-900/30 sticky top-0 z-50 shadow-[0_25px_50px_-12px] font-vibes 
+    group/nav overflow-x-hidden"
+    >
       <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-full max-w-7xl px-4">
         <div className="h-[6px] bg-gradient-to-r from-transparent via-amber-600/50 to-transparent shadow-[0_0_20px] shadow-amber-500/30">
           <div className="flex justify-between px-6">
@@ -104,6 +186,7 @@ const Navbar = () => {
                   </span>
                 )}
               </NavLink>
+              {renderDesktopAuthButton()}
             </div>
           </div>
 
@@ -135,7 +218,7 @@ const Navbar = () => {
 
       {/* mobile navigation */}
       {isOpen && (
-        <div className="md:hidden bg-[#2D1B0E] bottom-4 border-amber-900/40 relative shadow-lg shadow-amber-900/30 w-full">
+        <div className="md:hidden mt-8 bg-[#2D1B0E] bottom-4 border-amber-900/40 relative shadow-lg shadow-amber-900/30 w-full">
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               <NavLink
@@ -161,7 +244,7 @@ const Navbar = () => {
               <NavLink
                 to="/cart"
                 onClick={() => setIsOpen(false)}
-                className="w-full px-4 py3 text-center text-amber-100 rounded-xl border-2 border-amber-900/30 hover:border-amber-600/50 flex
+                className="w-full px-4 py-3 text-center text-amber-100 rounded-xl border-2 border-amber-900/30 hover:border-amber-600/50 flex
               item-center justify-center space-x-2 text-sm"
               >
                 <FiShoppingCart className="text-lg" />
@@ -171,12 +254,35 @@ const Navbar = () => {
                   </span>
                 )}
               </NavLink>
+              {renderMobileAuthButton()}
             </div>
           </div>
         </div>
       )}
 
       {/* login modal */}
+      {showLoginModal && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div
+            className="bg-gradient-to-br from-[#2D1B0E to-[#4a372a] rounded-xl p-6 w-full max-w-[400px] relative border-4 border-amber-700/30 
+            shadow-[0_0_30px] shadow-amber-500/30"
+          >
+            <button
+              onClick={() => Navigate("/")}
+              className="absolute top-2 right-2 text-amber-500 hover:text-amber-300 text-2xl"
+            >
+              <IoMdClose />
+            </button>
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent mb-4 text-center">
+              Foodie-Frenzy
+            </h2>
+            <Login
+              onLoginSuccess={handleLoginSuccess}
+              onClose={() => Navigate("/")}
+            />
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
