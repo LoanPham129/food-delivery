@@ -16,7 +16,7 @@ import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const { totalItems } = useCart();
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -34,7 +34,7 @@ const Navbar = () => {
   const handleLoginSuccess = () => {
     localStorage.setItem("loginData", JSON.stringify({ loggedIn: true }));
     setIsAuthenticated(true);
-    Navigate("/");
+    navigate("/");
   };
 
   const handleLogout = () => {
@@ -57,7 +57,7 @@ const Navbar = () => {
     ) : (
       <button
         onClick={() => {
-          Navigate("/login");
+          navigate("/login");
           setShowLoginModal(true);
         }}
         className="px-3 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 bg-gradient-to-br from-amber-500 to-amber-700
@@ -75,7 +75,7 @@ const Navbar = () => {
     return isAuthenticated ? (
       <button
         onClick={handleLogout}
-        className="w-full px-4 py-3 bg-gradient-to-br from-amber-500 to-amber-700 tetx-[#2D1B0E] rounded-xl 
+        className="w-full px-4 py-3 bg-gradient-to-br from-amber-500 to-amber-700 text-[#2D1B0E] rounded-xl 
     font-semibold flex items-center justify-center space-x-2 text-sm"
       >
         <FiLogOut />
@@ -87,7 +87,7 @@ const Navbar = () => {
           navigate("/login");
           setIsOpen(false);
         }}
-        className="w-full px-4 py-3 bg-gradient-to-br from-amber-500 to-amber-700 tetx-[#2D1B0E] rounded-xl 
+        className="w-full px-4 py-3 bg-gradient-to-br from-amber-500 to-amber-700 text-[#2D1B0E] rounded-xl 
     font-semibold flex items-center justify-center space-x-2 text-sm"
       >
         <FiKey />
@@ -163,7 +163,7 @@ const Navbar = () => {
                   } shadow-md shadow-amber-900/20`
                 }
               >
-                <span className="mr-2 text-sm md:tetx-[15px] lg:text-base text-amber-500 group-hover:text-amber-300 transition-all">
+                <span className="mr-2 text-sm md:text-[15px] lg:text-base text-amber-500 group-hover:text-amber-300 transition-all">
                   {link.icon}
                 </span>
                 <span className="text-amber-100 group-hover:text-amber-300 relative">
@@ -264,11 +264,11 @@ const Navbar = () => {
       {showLoginModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div
-            className="bg-gradient-to-br from-[#2D1B0E to-[#4a372a] rounded-xl p-6 w-full max-w-[400px] relative border-4 border-amber-700/30 
+            className="bg-gradient-to-br from-[#2D1B0E] to-[#4a372a] rounded-xl p-6 w-full max-w-[400px] relative border-4 border-amber-700/30 
             shadow-[0_0_30px] shadow-amber-500/30"
           >
             <button
-              onClick={() => Navigate("/")}
+              onClick={() => navigate("/")}
               className="absolute top-2 right-2 text-amber-500 hover:text-amber-300 text-2xl"
             >
               <IoMdClose />
@@ -278,7 +278,7 @@ const Navbar = () => {
             </h2>
             <Login
               onLoginSuccess={handleLoginSuccess}
-              onClose={() => Navigate("/")}
+              onClose={() => navigate("/")}
             />
           </div>
         </div>
