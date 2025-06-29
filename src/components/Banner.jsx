@@ -10,7 +10,7 @@ const Banner = () => {
     console.log("bannerAssets:", bannerAssets);
   console.log("orbitImages:", orbitImages);
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
     e.preventDefault();
     console.log("Search for: ", searchQuery);
   };

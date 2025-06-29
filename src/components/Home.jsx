@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import SpecialOffer from "./SpecialOffer";
 import AboutHome from "./AboutHome/AboutHome";
 import OutHomeMenu from "./OutHomeMenu/OutHomeMenu";
+import Footer from "./Footer";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <SpecialOffer />
       <AboutHome />
       <OutHomeMenu />
+      <Footer/>
     </>
   );
 };

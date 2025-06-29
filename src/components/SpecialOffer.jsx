@@ -69,7 +69,7 @@ const SpecialOffer = () => {
                     </p>
                     <div className="flex items-center justify-between gap-4">
                       <span className="text-2xl font-bold text-amber-400 flex-1">
-                        {item.price}
+                        ${item.price}
                       </span>
 
                       {cartItem ? (
@@ -104,7 +104,7 @@ const SpecialOffer = () => {
                               {
                                 ...item,
                                 name: item.title,
-                                price: parseFloat(item.price.replace("$", "")),
+                                price: parseFloat(item.price.replace("₹", "")),
                               },
                               1
                             )

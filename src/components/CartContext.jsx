@@ -15,7 +15,7 @@ const cartReducer = (state, action) => {
       const { item, quantity } = action.payload;
       const existingItem = state.find((i) => i.id === item.id);
       if (existingItem) {
-        return state.map((i) => (i.id === item.id ? { ...i, quantity } : i));
+        return state.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i));
       }
       return [...state, { ...item, quantity }];
     }

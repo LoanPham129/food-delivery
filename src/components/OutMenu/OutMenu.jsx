@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useCart } from "../cartContext";
-import { dummyMenuData } from "../../assets/OmhDD";
+import { dummyMenuData } from "../../assets/OmDD";
 import { FaPlus, FaMinus } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import './OutHomeMenu.css'
+import './OutMenu.css'
 
 const categories = [
   "Breakfast",
@@ -14,7 +13,8 @@ const categories = [
   "Desserts",
   "Drinks",
 ];
-const OutHomeMenu = () => {
+
+const OutMenu = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0]);
   const { cartItems, addToCart, removeFromCart } = useCart();
   const displayItems = (dummyMenuData[activeCategory] || []).slice(0, 4);
@@ -26,7 +26,7 @@ const OutHomeMenu = () => {
     px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-amber-300 to-amber-200">
+        <h2 className="text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-amber-300 to-amber-200">
           <span className="font-dancingscript block text-5xl md:text-7xl sm:text-6xl mb-2">
             Our Exquistise Menu
           </span>
@@ -93,7 +93,7 @@ const OutHomeMenu = () => {
                             className="w-8 h-8 rounded-full bg-amber-900/40 flex items-center justify-center hover:bg-amber-800/50 transition-colors"
                             onClick={() =>
                               quantity > 1
-                                ? addToCart(item, quantity - 1)
+                                ? addToCart(item, -1)
                                 : removeFromCart(item.id)
                             }
                           >
@@ -105,7 +105,7 @@ const OutHomeMenu = () => {
                           </span>
                           <button
                             className="w-8 h-8 rounded-full bg-amber-900/40 flex items-center justify-center hover:bg-amber-800/50 transition-colors"
-                            onClick={() => addToCart(item, quantity + 1)}
+                            onClick={() => addToCart(item, 1)}
                           >
                             <FaPlus className="text-amber-100" />
                           </button>
@@ -128,18 +128,9 @@ const OutHomeMenu = () => {
             );
           })}
         </div>
-
-        <div className="flex justify-center mt-16">
-          <Link
-            to="/menu"
-            className="bg-amber-900/30 py-3 px-8 sm:px-10 rounded-full font-cinzel uppercase tracking-widest transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-900/20 hover:bg-amber-800/40 hover:text-amber-50 backdrop-blur-sm border-amber-800/30 text-amber-100 "
-          >
-            Explore Full Menu
-          </Link>
-        </div>
       </div>
     </div>
   );
-};
+}
 
-export default OutHomeMenu;
+export default OutMenu
