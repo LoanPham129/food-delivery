@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FiGlobe, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { FiArrowRight, FiGlobe, FiMail, FiMapPin, FiMessageSquare, FiPhone } from "react-icons/fi";
 import { contactFormFields } from "../assets/dummydata";
 
 const Contact = () => {
@@ -125,11 +125,29 @@ const Contact = () => {
                         <div className=" absolute left-3 top-1/2 transform -translate-y-1/2">
                         <Icon className=" text-amber-500 text-xl animate-pulse"/>
                         </div>
-                        <input type={type} value={formFata[name]} name={name} onChange={handleChange} className=" w-full pl-10 pr-4 py-3 bg-white/10 border-2 border-amber-500/30 rounded-xl" 
+                        <input type={type} value={formFata[name]} name={name} onChange={handleChange} className=" w-full pl-10 pr-4 py-3 bg-white/10 border-2 border-amber-500/30 rounded-xl text-amber-50 focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-amber-200/50" 
                         placeholder={placeholder} pattern={pattern} required/>
                     </div>
                 </div>
             ))}
+            <div>
+              <label className="block text-amber-100 text-sm font-medium mb-2"> Your Query</label>
+              <div className=" relative">
+                <div className=" absolute left-3 top-4">
+                  <FiMessageSquare className="text-amber-500 text-xl animate-pulse"/>
+                </div>
+                <textarea name="query" rows="4" value={formFata.query} onChange={handleChange}
+                className=" w-full pl-10 pr-4 py-3 bg-white/10 border-2 border-amber-500/30 rounded-xl text-amber-50 focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-amber-200/50"
+                placeholder="Type your message here..."
+                required>
+                </textarea>
+              </div>
+            </div>
+
+            <button type="submit" className=" w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-amber-500/20 flex items-center justify-center space-x-2 group">
+            <span>Submit Query</span>
+            <FiArrowRight className=" w-5 h-5 group-hover:translate-x-1 transition-transform"/>
+            </button>
           </form>
           </div>
         </div>

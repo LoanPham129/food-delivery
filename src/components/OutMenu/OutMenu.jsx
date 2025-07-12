@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useCart } from "../cartContext";
 import { dummyMenuData } from "../../assets/OmDD";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import './OutMenu.css'
+import { useCart } from "../CartContext";
 
 const categories = [
   "Breakfast",

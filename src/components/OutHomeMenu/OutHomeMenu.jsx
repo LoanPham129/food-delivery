@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useCart } from "../cartContext";
 import { dummyMenuData } from "../../assets/OmhDD";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import './OutHomeMenu.css'
+import { useCart } from "../CartContext";
 
 const categories = [
   "Breakfast",

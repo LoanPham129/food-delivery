@@ -10,9 +10,9 @@ import {
   FiLogOut,
   FiKey,
 } from "react-icons/fi";
-import { useCart } from "./cartContext";
 import Login from "./Login";
 import { IoMdClose } from "react-icons/io";
+import { useCart } from "./CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
