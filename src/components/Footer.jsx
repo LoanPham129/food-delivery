@@ -121,19 +121,11 @@ const Footer = () => {
         </div>
 
         {/* bottom section */}
-        <div className=" border-t border-amber-800 pt8 mt8 text-center">
+        <div className=" border-t border-amber-800 pt8 mt8 text-center justify-center">
           <p className=" text-amber-400 tlg mb-2 font-playfair">
             &copy; 2025 Foodie-Frenzy by Loan Pham
           </p>
-          <div className="group inline-block">
-            <a
-              href="https://hexagondigitalservices.com/"
-              target="_blank"
-              className=" tlg font-sacramento bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 bg-clip-text text-transparent hover:text-purple-300 transition-all duration-500"
-            >
-              Designed by Hexagon Digital Services
-            </a>
-          </div>
+          
         </div>
       </div>
     </footer>
