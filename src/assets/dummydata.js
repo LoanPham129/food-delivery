@@ -150,10 +150,10 @@ export const additionalData = [
 
 // FOOTER 
 export const socialIcons = [
-    { icon: FaFacebook, link: 'https://www.facebook.com/share/1DjbwhdR4z/', color: '#3b5998', label: 'Facebook' },
-    { icon: FaInstagram, link: 'https://www.instagram.com/hexagondigitalservices?igsh=MW1nanQ2eXIycnRkZQ==', color: '#E1306C', label: 'Instagram' },
-    { icon: FaXTwitter, link: 'https://x.com/HexagonDService?t=Vv5ReZAIbXONqkq_O0ksWQ&s=09', color: '#000', label: 'X' },
-    { icon: FaYoutube, link: 'https://youtube.com/@hexagondigitalservices?si=UnBt0AHI-ChN5Mze', color: '#FF0000', label: 'Youtube' },
+    { icon: FaFacebook,  color: '#3b5998', label: 'Facebook' },
+    { icon: FaInstagram,  color: '#E1306C', label: 'Instagram' },
+    { icon: FaXTwitter,  color: '#000', label: 'X' },
+    { icon: FaYoutube, color: '#FF0000', label: 'Youtube' },
 ];
 
 // LOGIN 

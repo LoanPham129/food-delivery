@@ -99,10 +99,10 @@ const Footer = () => {
               </h3>
               <div className="flex space-x-4">
                 {socialIcons.map(
-                  ({ icon: Icon, link, color, label }, index) => (
+                  ({ icon: Icon, color, label }, index) => (
                     <a
                       target="_blank"
-                      href={link}
+                      // href={link}
                       key={index}
                       className=" text-2xl bg-amber-400/10 p-3 rounded-full hover:bg-amber-400/20 hover:scale-110 transition-all
                   duration-300 relative group"
@@ -125,15 +125,6 @@ const Footer = () => {
           <p className=" text-amber-400 tlg mb-2 font-playfair">
             &copy; 2025 Foodie-Frenzy by Loan Pham
           </p>
-          <div className="group inline-block">
-            <a
-              href="https://hexagondigitalservices.com/"
-              target="_blank"
-              className=" tlg font-sacramento bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 bg-clip-text text-transparent hover:text-purple-300 transition-all duration-500"
-            >
-              Designed by Hexagon Digital Services
-            </a>
-          </div>
         </div>
       </div>
     </footer>
